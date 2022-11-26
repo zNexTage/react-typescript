@@ -1,11 +1,11 @@
 import React from 'react';
 import Form from '../components/forms';
 import List from '../components/lists';
-import './styles.scss';
+import style from './styles.module.scss';
 
 function App() {
   return (
-    <div className={'AppStyle'}>
+    <div className={style.AppStyle}>
       <Form />
       <List />
     </div>
