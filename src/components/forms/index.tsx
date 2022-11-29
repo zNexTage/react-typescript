@@ -33,7 +33,7 @@ class Form extends React.Component {
                     />
                 </div>
                 <Button>
-                    Butão
+                    Adicionar
                 </Button>
             </form>
         )
