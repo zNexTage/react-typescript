@@ -1,10 +1,7 @@
 import React, { useState } from "react";
+import ITask from "../../types/task";
 import style from "./style.module.scss";
 
-interface ITask {
-    task: string,
-    time: string
-}
 
 interface IProps {
     tasks: Array<ITask>
@@ -15,15 +12,15 @@ const List = ({ tasks }: IProps): JSX.Element => {
 
     return (
         <aside className={style.listaTarefas}>
-            <h2 onClick={() => {
-                setTasks([...tasks, { task: 'Estudar estado', time: '05:00:00' }])
-            }}>
+            <h2>
                 Estudos do dia
             </h2>
             <ul>
                 {
-                    tasks.map(({ task, time }, index) => (
-                        <li key={index} className={style.item}>
+                    tasks.map(({ task, time, id, completed, selected }, index) => (
+                        <li
+                            key={id}
+                            className={style.item}>
                             <h3>
                                 {task}
                             </h3>

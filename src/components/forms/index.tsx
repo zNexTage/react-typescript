@@ -2,6 +2,7 @@ import React from 'react';
 import ITask from '../../types/task';
 import Button from '../button';
 import style from './styles.module.scss';
+import { v4 as uuid } from "uuid";
 
 interface IProps {
     onSubmit: (task: ITask) => void;
@@ -28,10 +29,13 @@ class Form extends React.Component<IProps> {
     private onSubmit(event: React.FormEvent<HTMLFormElement>) {
         // avoids the default behavior of submit, in this case, it prevents the page from being updated.
         event.preventDefault();
-
+        
         this.props.onSubmit({
+            id: uuid(),
             task: this.state.task,
-            time: this.state.time
+            time: this.state.time,
+            completed: false,
+            selected: false
         });
 
         //Reset state after submit
@@ -67,7 +71,6 @@ class Form extends React.Component<IProps> {
                         id="txtTime"
                         step={1}
                         min="00:00:00"
-                        max="01:30"
                         placeholder="O que você quer estudar?"
                         type="time"
                         name="time"
