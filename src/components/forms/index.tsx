@@ -1,8 +1,13 @@
 import React from 'react';
+import ITask from '../../types/task';
 import Button from '../button';
 import style from './styles.module.scss';
 
-class Form extends React.Component {
+interface IProps {
+    onSubmit: (task: ITask) => void;
+}
+
+class Form extends React.Component<IProps> {
     state = {
         task: "",
         time: "00:00"
@@ -24,7 +29,16 @@ class Form extends React.Component {
         // avoids the default behavior of submit, in this case, it prevents the page from being updated.
         event.preventDefault();
 
+        this.props.onSubmit({
+            task: this.state.task,
+            time: this.state.time
+        });
 
+        //Reset state after submit
+        this.setState({
+            task: '',
+            time: '00:00'
+        });
     }
 
     render(): React.ReactNode {
@@ -62,7 +76,7 @@ class Form extends React.Component {
                         required
                     />
                 </div>
-                <Button>
+                <Button type='submit'>
                     Adicionar
                 </Button>
             </form>
