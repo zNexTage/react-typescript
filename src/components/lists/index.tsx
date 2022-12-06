@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
 
-// Function Components -> Forma moderna de escrever componentes em React. 
+interface ITask {
+    task: string,
+    time: string
+}
 
-const List = (): JSX.Element => {
-    const [tasks, setTasks] = useState([{
-        task: "React",
-        time: "02:00"
-    }, {
-        task: "Javascript",
-        time: "01:00"
-    }, {
-        task: "Typescript",
-        time: "03:00"
-    }]);
+interface IProps {
+    tasks: Array<ITask>
+}
+
+// Function Components -> Forma moderna de escrever componentes em React. 
+const List = ({ tasks }: IProps): JSX.Element => {
 
     return (
         <aside className={style.listaTarefas}>
