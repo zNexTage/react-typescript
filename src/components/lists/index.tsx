@@ -18,7 +18,7 @@ const Item = ({ onTaskClick, task }: IItemProps) => {
         <li
             onClick={() => onTaskClick(task)}
             key={task.id}
-            className={style.item}>
+            className={`${style.item} ${task.selected ? style.itemSelecionado : ''}`}>
             <h3>
                 {task.task}
             </h3>

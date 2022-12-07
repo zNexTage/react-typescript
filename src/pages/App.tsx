@@ -13,6 +13,14 @@ function App() {
 
   const onTaskClick = (task: ITask) => {
     setSelectedTask(task);
+
+    const selectedId = task.id;
+    setTasks(previousTasks => {
+      return previousTasks.map((task) => ({
+        ...task,
+        selected: task.id === selectedId // defines as selected the task that the user clicked.
+      }))
+    });
   }
 
   return (
