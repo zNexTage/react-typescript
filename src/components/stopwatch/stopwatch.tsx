@@ -13,8 +13,10 @@ const Stopwatch = ({ task }: IProps) => {
     const [time, setTime] = useState<number>();
 
     useEffect(() => {
-        DateTimeFormat.timeToSecond(task?.time || "00:00:00");
-    }, [task?.time]);
+        if (task?.time) {
+            setTime(DateTimeFormat.timeToSecond(task.time));
+        }
+    }, [task]);
 
     return (
         <div className={style.cronometro}>
