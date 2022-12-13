@@ -30,7 +30,8 @@ function App() {
         tasks={tasks}
         onTaskClick={onTaskClick}
       />
-      <Stopwatch />
+      <Stopwatch
+        task={selectedTask} />
     </div>
   );
 }
