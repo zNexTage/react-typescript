@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className={style.AppStyle}>
-      <Form onSubmit={onSubmit} />
+      <Form onTaskSubmit={onSubmit} />
       <List
         tasks={tasks}
         onTaskClick={onTaskClick}
