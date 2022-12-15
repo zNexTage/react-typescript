@@ -23,9 +23,8 @@ const Stopwatch = ({ task }: IProps) => {
             <p className={style.titulo}>
                 Escolha um card e inicie o cronomêtro
             </p>
-            Tempo: {time}
             <div className={style.relogioWrapper}>
-                <Clock />
+                <Clock time={time} />
             </div>
             <Button>
                 Começar!

@@ -13,6 +13,18 @@ class DateTimeFormat {
         // Sum all seconds
         return hourInSeconds + minutesInSeconds + parseInt(seconds);
     }
+
+    /**
+     * Convert seconds to minutes
+     * @param timeInSeconds 
+     * @returns a object with the minutes and the seconds
+     */
+    public static secondsToMinute(timeInSeconds: number) {
+        return {
+            minutes: Math.floor(timeInSeconds / 60),
+            seconds: timeInSeconds % 60
+        }
+    }
 }
 
 export default DateTimeFormat;
