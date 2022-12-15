@@ -6,10 +6,11 @@ import Clock from "./clock";
 import style from "./stopwatch.module.scss";
 
 interface IProps {
-    task: ITask | undefined
+    task: ITask | undefined,
+    onTimeEnd: () => void;
 }
 
-const Stopwatch = ({ task }: IProps) => {
+const Stopwatch = ({ task, onTimeEnd }: IProps) => {
     const [time, setTime] = useState<number>();
 
     useEffect(() => {
@@ -17,6 +18,20 @@ const Stopwatch = ({ task }: IProps) => {
             setTime(DateTimeFormat.timeToSecond(task.time));
         }
     }, [task]);
+
+    const countdown = (count: number = 0) => {
+        const timeout = setTimeout(() => {
+            if (count > 0) {
+                const newTime = count - 1;
+
+                setTime(newTime);
+
+                return countdown(newTime);
+            }
+
+            onTimeEnd();
+        }, 1000);
+    }
 
     return (
         <div className={style.cronometro}>
@@ -26,7 +41,7 @@ const Stopwatch = ({ task }: IProps) => {
             <div className={style.relogioWrapper}>
                 <Clock time={time} />
             </div>
-            <Button>
+            <Button onClick={() => countdown(time)}>
                 Começar!
             </Button>
         </div>

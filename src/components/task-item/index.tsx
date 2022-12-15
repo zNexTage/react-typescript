@@ -9,15 +9,19 @@ interface ITaskProps {
 const TaskItem = ({ onTaskClick, task }: ITaskProps) => {
     return (
         <li
-            onClick={() => onTaskClick(task)}
+            onClick={() => !task.completed && onTaskClick(task)}
             key={task.id}
-            className={`${style.item} ${task.selected ? style.itemSelecionado : ''}`}>
+            className={`${style.item} ${task.selected ? style.itemSelecionado : ''} ${task.completed ? style.itemCompletado : ''}`}>
             <h3>
                 {task.task}
             </h3>
             <span>
                 {task.time}
             </span>
+            {task.completed &&
+                <span aria-label="Tarefa completada" className={style.concluido}>
+                </span>
+            }
         </li>
     )
 }

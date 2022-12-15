@@ -3,7 +3,8 @@ import style from "./style.module.scss";
 
 interface IProps {
     children: React.ReactNode;
-    type?: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset" | undefined;
+    onClick?: () => void;
 }
 
 class Button extends React.Component<IProps> {
@@ -14,6 +15,7 @@ class Button extends React.Component<IProps> {
         return (
             <button
                 type={type}
+                onClick={this.props.onClick}
                 className={style.botao}>
                 {this.props.children}
             </button>

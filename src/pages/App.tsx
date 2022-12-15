@@ -15,12 +15,31 @@ function App() {
     setSelectedTask(task);
 
     const selectedId = task.id;
+
     setTasks(previousTasks => {
       return previousTasks.map((task) => ({
         ...task,
         selected: task.id === selectedId // defines as selected the task that the user clicked.
       }))
     });
+  }
+
+  const endTask = () => {
+    if (selectedTask) {
+      setSelectedTask(undefined);
+      
+      setTasks(previousTask => previousTask.map((task => {
+        if (task.id === selectedTask.id) {
+          return {
+            ...task,
+            selected: false,
+            completed: true
+          }
+        }
+
+        return task;
+      })))
+    }
   }
 
   return (
@@ -31,6 +50,7 @@ function App() {
         onTaskClick={onTaskClick}
       />
       <Stopwatch
+        onTimeEnd={endTask}
         task={selectedTask} />
     </div>
   );
